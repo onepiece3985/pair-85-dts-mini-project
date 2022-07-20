@@ -1,8 +1,41 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import Cards from "../components/containers/Cards";
 import Footer from "../components/templates/Footer";
 import Header from "../components/templates/Header";
 
 function Home(props) {
+	const [errorMessage, setErrorMessage] = useState("");
+	const [movies, setMovies] = useState([]);
+	const [page, setPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(0);
+	const [search, setSearch] = useState("");
+
+	const searchValueHandler = (evt) => {
+		let searchParam = evt.target.value;
+		setSearch(searchParam);
+	};
+
+	const searchMovies = (evt) => {
+		evt.preventDefault();
+		console.log(search);
+	};
+
+	const getData = () => {
+		const API = `https://api.themoviedb.org/3/discover/movie?api_key=a3721e7832aa7ef094eeed72a9a77a0d&page=${page}`;
+		axios.get(API).then((response) => {
+			setMovies(response.data.results);
+			setTotalPages(response.total_pages);
+			// setPage(response.data.page + 1);
+		});
+	};
+
+	useEffect(() => {
+		return () => {
+			getData();
+		};
+	}, []);
+
 	return (
 		<div>
 			<Header />
@@ -42,11 +75,15 @@ function Home(props) {
 									Cari Film Favorit
 									<br /> terbaru disini.
 								</h3>
-								<form action="#" class="banner-one__form">
+								<form
+									class="banner-one__form"
+									onSubmit={searchMovies}
+								>
 									<div class="banner-one__form-box">
 										<input
 											type="text"
-											placeholder="Cari film . . ."
+											placeholder="Search movie title here . . ."
+											onChange={searchValueHandler}
 											style={{ maxWidth: "100%" }}
 										/>
 									</div>
@@ -72,159 +109,25 @@ function Home(props) {
 					<div class="blog-one__top">
 						<div class="block-title text-left">
 							<p>
-								<span>Latest News</span>
+								<span>Movies</span>
 							</p>
 							<h3>
-								Learn Some New info from <br />{" "}
-								<span>Our Latest News.</span>
+								Watch Your Favorite <br /> <span>Movies.</span>
 							</h3>
 						</div>
 					</div>
 					<div className="row">
-						<div class="col-lg-4 mb-5">
-							<div class="blog-one__single">
-								<div class="blog-one__image">
-									<img
-										src="assets/images/blog/blog-1-1.jpg"
-										alt=""
-									/>
-									<a href="blog-details.html">
-										<i class="fal fa-plus"></i>
-									</a>
-								</div>
-								<div class="blog-one__content">
-									<div class="blog-one__meta">
-										<a href="blog-details.html">
-											Sara dodly
-										</a>
-										<span>-</span>
-										<a href="blog-details.html">
-											Mar 15, 2020
-										</a>
+						{movies.length > 0 ? (
+							movies.map((movie) => <Cards data={movie} />)
+						) : (
+							<div className="col-lg-12">
+								<div className="card">
+									<div className="card-body">
+										<h5>Data belum tersedia</h5>
 									</div>
-									<h3>
-										<a href="blog-details.html">
-											Additional Services that will Grow
-											Your...
-										</a>
-									</h3>
-									<a
-										href="blog-details.html"
-										class="thm-btn blog-one__btn"
-									>
-										<span>Read More</span>
-									</a>
 								</div>
 							</div>
-						</div>
-						<div class="col-lg-4 mb-5">
-							<div class="blog-one__single">
-								<div class="blog-one__image">
-									<img
-										src="assets/images/blog/blog-1-1.jpg"
-										alt=""
-									/>
-									<a href="blog-details.html">
-										<i class="fal fa-plus"></i>
-									</a>
-								</div>
-								<div class="blog-one__content">
-									<div class="blog-one__meta">
-										<a href="blog-details.html">
-											Sara dodly
-										</a>
-										<span>-</span>
-										<a href="blog-details.html">
-											Mar 15, 2020
-										</a>
-									</div>
-									<h3>
-										<a href="blog-details.html">
-											Additional Services that will Grow
-											Your...
-										</a>
-									</h3>
-									<a
-										href="blog-details.html"
-										class="thm-btn blog-one__btn"
-									>
-										<span>Read More</span>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 mb-5">
-							<div class="blog-one__single">
-								<div class="blog-one__image">
-									<img
-										src="assets/images/blog/blog-1-1.jpg"
-										alt=""
-									/>
-									<a href="blog-details.html">
-										<i class="fal fa-plus"></i>
-									</a>
-								</div>
-								<div class="blog-one__content">
-									<div class="blog-one__meta">
-										<a href="blog-details.html">
-											Sara dodly
-										</a>
-										<span>-</span>
-										<a href="blog-details.html">
-											Mar 15, 2020
-										</a>
-									</div>
-									<h3>
-										<a href="blog-details.html">
-											Additional Services that will Grow
-											Your...
-										</a>
-									</h3>
-									<a
-										href="blog-details.html"
-										class="thm-btn blog-one__btn"
-									>
-										<span>Read More</span>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-lg-4 mb-5">
-							<div class="blog-one__single">
-								<div class="blog-one__image">
-									<img
-										src="assets/images/blog/blog-1-1.jpg"
-										alt=""
-									/>
-									<a href="blog-details.html">
-										<i class="fal fa-plus"></i>
-									</a>
-								</div>
-								<div class="blog-one__content">
-									<div class="blog-one__meta">
-										<a href="blog-details.html">
-											Sara dodly
-										</a>
-										<span>-</span>
-										<a href="blog-details.html">
-											Mar 15, 2020
-										</a>
-									</div>
-									<h3>
-										<a href="blog-details.html">
-											Additional Services that will Grow
-											Your...
-										</a>
-									</h3>
-									<a
-										href="blog-details.html"
-										class="thm-btn blog-one__btn"
-									>
-										<span>Read More</span>
-									</a>
-								</div>
-							</div>
-						</div>
+						)}
 					</div>
 				</div>
 			</section>
