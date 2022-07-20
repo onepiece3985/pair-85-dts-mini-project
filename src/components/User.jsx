@@ -99,7 +99,7 @@ const LogOrRegForm=({logOrReg})=> {
 										/>
                                         <input
 											type="password"
-											placeholder="Password"
+											placeholder="Password Minimal 6 Digit"
                                             value={credential.password}
                                             onChange={textPassOnChange}
 											style={{ maxWidth: "100%" }}
