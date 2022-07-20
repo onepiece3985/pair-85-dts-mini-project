@@ -39,13 +39,14 @@ function Home(props) {
 						<div class="col-xl-12">
 							<div class="banner-one__content text-center">
 								<h3>
-									Boost Your Ranking <br /> with SEO Service.
+									Cari Film Favorit
+									<br /> terbaru disini.
 								</h3>
 								<form action="#" class="banner-one__form">
 									<div class="banner-one__form-box">
 										<input
 											type="text"
-											placeholder="Your Website URL"
+											placeholder="Cari film . . ."
 											style={{ maxWidth: "100%" }}
 										/>
 									</div>
