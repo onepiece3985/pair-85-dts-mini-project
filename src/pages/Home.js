@@ -5,7 +5,6 @@ import Footer from "../components/templates/Footer";
 import Header from "../components/templates/Header";
 
 function Home(props) {
-	const [errorMessage, setErrorMessage] = useState("");
 	const [movies, setMovies] = useState([]);
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(0);
@@ -21,18 +20,17 @@ function Home(props) {
 		console.log(search);
 	};
 
-	const getData = () => {
+	const getMovies = () => {
 		const API = `https://api.themoviedb.org/3/discover/movie?api_key=a3721e7832aa7ef094eeed72a9a77a0d&page=${page}`;
 		axios.get(API).then((response) => {
 			setMovies(response.data.results);
 			setTotalPages(response.total_pages);
-			// setPage(response.data.page + 1);
 		});
 	};
 
 	useEffect(() => {
 		return () => {
-			getData();
+			getMovies();
 		};
 	}, []);
 

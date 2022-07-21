@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, NavLink } from "react-router-dom";
 
 function Cards({data}) {
     return (
@@ -9,9 +10,10 @@ function Cards({data}) {
                         src={`https://image.tmdb.org/t/p/w300${data.poster_path}`}
                         alt=""
                     />
-                    <a href={data.id}>
-                        <i class="fal fa-plus"></i>
-                    </a>
+                    
+                        <Link to={`movies/${data.id}`}>
+                            <i class="fal fa-plus"></i>
+                        </Link>
                 </div>
                 <div class="blog-one__content">
                     <div class="blog-one__meta">
@@ -24,16 +26,13 @@ function Cards({data}) {
                         </a>
                     </div>
                     <h3>
-                        <a href={data.id}>
+                        <Link to={`movies/${data.id}`}>
                             {data.title}
-                        </a>
+                        </Link>
                     </h3>
-                    <a
-                        href={`movies/${data.id}`}
-                        class="thm-btn blog-one__btn btn-block"
-                    >
+                    <NavLink to={`movies/${data.id}`} className="thm-btn blog-one__btn btn-block">
                         <span>Detail</span>
-                    </a>
+                    </NavLink>    
                 </div>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer(props) {
 	return (
@@ -7,22 +8,22 @@ function Footer(props) {
 				<div class="particles-snow" id="footer-snow"></div>
 
 				<img
-					src="assets/images/shapes/footer-shape-1-1.png"
+					src="/assets/images/shapes/footer-shape-1-1.png"
 					class="site-footer__bg-shape-1"
 					alt=""
 				/>
 				<img
-					src="assets/images/shapes/footer-shape-1-2.png"
+					src="/assets/images/shapes/footer-shape-1-2.png"
 					class="site-footer__bg-shape-2"
 					alt=""
 				/>
 				<img
-					src="assets/images/shapes/footer-shape-1-3.png"
+					src="/assets/images/shapes/footer-shape-1-3.png"
 					class="site-footer__bg-shape-3"
 					alt=""
 				/>
 				<img
-					src="assets/images/shapes/footer-shape-1-4.png"
+					src="/assets/images/shapes/footer-shape-1-4.png"
 					class="site-footer__bg-shape-4"
 					alt=""
 				/>
@@ -128,9 +129,9 @@ function Footer(props) {
 				<div class="site-footer__bottom">
 					<div class="container">
 						<p>© 2020 copyright all right reserved</p>
-						<a href="index.html">
-							<img src="assets/images/logo-1-1.png" alt="" />
-						</a>
+						<Link to="/">
+							<img src="/assets/images/logo-1-1.png" alt="" />
+						</Link>
 						<ul class="list-unstyled site-footer__bottom-menu">
 							<li>
 								<a href="#">Privace & Policy.</a>

@@ -8,9 +8,9 @@ function Header(props) {
 				<div class="container">
 					<div class="inner-container">
 						<div class="logo-box">
-							<a href="index.html">
-								<img src="assets/images/logo-1-1.png" alt="" />
-							</a>
+							<Link to="/">
+								<img src="/assets/images/logo-1-1.png" alt="" />
+							</Link>
 							<a
 								href="javascript:void(0);"
 								class="side-menu__toggler"
