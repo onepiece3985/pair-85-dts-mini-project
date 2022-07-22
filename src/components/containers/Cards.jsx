@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 function Cards({data}) {
     return (
-        <div class="col-lg-4 mb-5" key={data.id}>
+        <div class="col-lg-4 mb-5">
             <div class="blog-one__single">
                 <div class="blog-one__image">
                     <img

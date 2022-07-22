@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import Footer from "../components/templates/Footer";
 import Header from "../components/templates/Header";
+import CardProductionCompany from "../components/containers/CardProductionCompany";
 
 function DetailMovie(props) {
 	let params = useParams();
@@ -17,7 +18,9 @@ function DetailMovie(props) {
 			`?api_key=a3721e7832aa7ef094eeed72a9a77a0d`;
 		axios.get(API).then((response) => {
 			setMovie(response.data);
-			setCompanies(response.production_companies);
+			setCompanies(response.data.production_companies);
+			console.log(companies);
+			console.log(response);
 		});
 	};
 
@@ -77,24 +80,22 @@ function DetailMovie(props) {
 				<div class="error-404__bubble-8"></div>
 
 				<div class="container">
-					<div class="row no-gutters">
-						<div class="col-xl-8 d-flex">
+					<div class="row">
+						<div class="col-lg-8">
 							<div class="my-auto" style={{ marginTop: "10px" }}>
 								<div class="service-two__main ">
 									<div class="block-title text-left">
 										<p>
 											<span>About Movie</span>
 										</p>
-										<h3>
-											{movie.title} <br />
-											<span>
-												{
-													movie.belongs_to_collection
-														.name
-												}
-												.
-											</span>
-										</h3>
+										<h3>{movie.title}</h3>
+										<h5>{movie.tagline}.</h5>
+										<div class="service-details__image">
+											<img
+												src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+												alt={movie.title}
+											/>
+										</div>
 									</div>
 									<p>{movie.overview}</p>
 									<ul class="service-details__list list-unstyled">
@@ -109,17 +110,14 @@ function DetailMovie(props) {
 										</li>
 										<li>
 											<i class="fa fa-check-circle"></i>
-											{movie.status}
+											{movie.status} -{" "}
+											{movie.release_date}
 										</li>
 									</ul>
-									<img
-										src="/assets/images/shapes/service-sign-1-1.png"
-										alt=""
-									/>
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-4">
+						<div class="col-lg-4">
 							<div class="service-two__box-wrap">
 								<div class="row">
 									<div class="col-md-12">
@@ -162,33 +160,11 @@ function DetailMovie(props) {
 												Production Companies
 											</h4>
 											<div class="sidebar__post-wrap">
-												{movie.production_companies.map(
-													(company) => {
-														<div class="sidebar__post-single">
-															<div class="sidebar__post-image">
-																<img
-																	src={`https://image.tmdb.org/t/p/w80${company.logo_path}`}
-																	alt=""
-																/>
-															</div>
-															<div class="sidebar__post-content">
-																<h3>
-																	<a href="#">
-																		Additional
-																		Services
-																		that
-																		will
-																		Grow
-																		Your...
-																	</a>
-																</h3>
-																<span>
-																	Mar 15, 2020
-																</span>
-															</div>
-														</div>;
-													}
-												)}
+												{companies.map((company) => (
+													<CardProductionCompany
+														data={company}
+													/>
+												))}
 											</div>
 										</div>
 
@@ -199,19 +175,19 @@ function DetailMovie(props) {
 											<ul class="list-unstyled sidebar__contact-list">
 												<li>
 													<i class="fa fa-map-marker-alt"></i>
-													Royal Orville Road Apt. 728{" "}
-													<br /> California, USA
+													{
+														// movie
+														// 	.production_countries[0]
+														// 	.name
+													}
 												</li>
 												<li>
-													<i class="fa fa-envelope"></i>
-													<a href="mailto:Inovexcompany@gmail.com">
-														Inovexcompany@gmail.com
-													</a>
-												</li>
-												<li>
-													<i class="fa fa-phone"></i>
-													<a href="tel:+88-0-1764867977">
-														+88 (0)1764867977
+													<i class="fa fa-link"></i>
+													<a
+														href={movie.homepage}
+														target="_blank"
+													>
+														Homepage
 													</a>
 												</li>
 											</ul>

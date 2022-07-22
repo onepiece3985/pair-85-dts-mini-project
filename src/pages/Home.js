@@ -116,7 +116,9 @@ function Home(props) {
 					</div>
 					<div className="row">
 						{movies.length > 0 ? (
-							movies.map((movie) => <Cards data={movie} />)
+							movies.map((movie) => (
+								<Cards key={movie.id} data={movie} />
+							))
 						) : (
 							<div className="col-lg-12">
 								<div className="card">
